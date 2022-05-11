@@ -1,0 +1,48 @@
+﻿@model YonetmenModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <h4>Yonetmen</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-2">
+            @Html.DisplayNameFor(model => model.Adi)
+        </dt>
+        <dd class="col-10">
+            @Html.DisplayFor(model => model.Adi)
+        </dd>
+        <dt class="col-2">
+            @Html.DisplayNameFor(model => model.Soyadi)
+        </dt>
+        <dd class="col-10">
+            @Html.DisplayFor(model => model.Soyadi)
+        </dd>
+        <dt class="col-2">
+            @Html.DisplayNameFor(model => model.Odul)
+        </dt>
+        <dd class="col-10">
+            @Html.DisplayFor(model => model.Odul)
+        </dd>
+        <dt class="col-2">
+            @Html.DisplayNameFor(model => model.FilmSayisiDisplay)
+        </dt>
+        <dd class="col-10">
+            @Html.DisplayFor(model => model.FilmSayisiDisplay)
+        </dd>
+        <dt class="col-2">
+            @Html.DisplayNameFor(model => model.DogumTarihi)
+        </dt>
+        <dd class="col-10">
+            @Html.DisplayFor(model => model.DogumTarihi)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Düzenle</a>&nbsp;|&nbsp;
+    <a asp-action="Index">Yönetmen Listesi</a>
+</div>

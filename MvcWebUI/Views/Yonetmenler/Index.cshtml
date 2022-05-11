@@ -1,0 +1,90 @@
+﻿@model IEnumerable<YonetmenModel>
+
+@{
+    ViewData["Title"] = "Yönetmen Listesi";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if(TempData["Mesaj"] != null)
+{
+    <p class="text-primary">
+        @TempData["Mesaj"]
+    </p>
+}
+
+<p>
+    <a asp-action="Create">Yeni Yönetmen Ekle</a>
+</p>
+<table id ="yonetmenler" class="display" style="100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Adi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Soyadi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Odul)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FilmSayisiDisplay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DogumTarihi) (Yıl-Ay-Gün)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Soyadi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Odul)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FilmSayisiDisplay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DogumTarihiDisplay) 
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">Detay</a>&nbsp;|&nbsp;
+
+                <a asp-action="Edit" asp-route-id="@item.Id">Düzenle</a>&nbsp;|&nbsp;
+                
+
+                <a asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@section Scripts{
+    <link href="/lib/datatables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="/lib/datatables/js/jquery.dataTables.min.js"></script>
+
+    <script>
+            $(document).ready( function () {
+                    $('#yonetmenler').DataTable(
+                    {
+                        language :{
+                            url: "/json/datatablesTurkish.json"
+                        }
+                    })
+            });
+    </script>
+}

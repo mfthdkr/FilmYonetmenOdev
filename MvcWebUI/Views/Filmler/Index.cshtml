@@ -1,0 +1,95 @@
+﻿@model IEnumerable<FilmModel>
+
+@{
+    ViewData["Title"] = "Film Listesi";
+}
+
+<h1>@ViewData["Title"]</h1>
+@if(TempData["Mesaj"] != null)
+{
+    <p class="bg-success text-white">
+        @TempData["Mesaj"]
+    </p>
+}
+
+<p>
+    <a asp-action="Create">Yeni Film</a>
+</p>
+<table id ="filmler" class="display" style="100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Adi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Aciklamasi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HasilatDisplay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Odul)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GosterimTarihiDisplay) (Yıl-Ay-Gün)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.YonetmenId)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Aciklamasi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasilatDisplay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Odul)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GosterimTarihiDisplay) 
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.YonetmenAdiDisplay)
+            </td>
+           
+            <td>
+				<a asp-action="Details" asp-route-id="@item.Id">Detay</a>&nbsp;|&nbsp;
+                <a asp-action="Edit" asp-route-id="@item.Id">Düzenle</a>&nbsp;|&nbsp;
+                <a asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@section Scripts{
+    <link href="/lib/datatables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="/lib/datatables/js/jquery.dataTables.min.js"></script>
+
+    <script>
+            $(document).ready( function () {
+                    $('#filmler').DataTable(
+                    {
+                        language :{
+                            url: "/json/datatablesTurkish.json"
+                        }
+                    })
+            });
+    </script>
+}

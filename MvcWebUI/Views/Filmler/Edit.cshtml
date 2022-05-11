@@ -1,0 +1,95 @@
+﻿@model FilmModel
+
+@{
+    ViewData["Title"] = "Film Düzenle";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h4>Film</h4>
+<hr />
+<div class="row">
+    <div class="col-12">
+        <form asp-action="Edit">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="row mb-3">
+                <label asp-for="Adi" class="col-2 col-form-label"></label>
+                <div class="col-5">
+                    <input asp-for="Adi" class="form-control" />
+                    <span asp-validation-for="Adi" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label asp-for="Aciklamasi" class="col-2 col-form-label"></label>
+                <div class="col-5">
+                    <textarea asp-for="Aciklamasi" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="Aciklamasi" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label asp-for="Hasilat" class="col-2 col-form-label"></label>
+                <div class="col-5">
+                    <input asp-for="Hasilat" class="form-control" />
+                    <span asp-validation-for="Hasilat" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label asp-for="Odul" class="col-2 col-form-label"></label>
+                <div class="col-5">
+                    <input asp-for="Odul" class="form-control" />
+                    <span asp-validation-for="Odul" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label asp-for="GosterimTarihi" class="col-2 col-form-label"></label>
+                <div class="col-5">
+                    <input asp-for="GosterimTarihi" class="form-control" id="tarih" />
+                    <span asp-validation-for="GosterimTarihi" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label asp-for="YonetmenId" class="col-2 col-form-label"></label>
+                <div class="col-5">
+                    <select asp-for="YonetmenId" class="form-control" asp-items="ViewBag.YonetmenId ">
+
+                        <option value="">--Seçiniz--</option>
+                        <span asp-validation-for="YonetmenId" class="text-danger"></span>
+                    </select>
+                </div>
+            </div>
+            <input type="hidden" asp-for="Id" />
+
+            <div class="row mb-3">
+                <div class="offset-2 col-5">
+                    <input type="submit" value="Kaydet" class="btn btn-primary" />
+                    &nbsp;&nbsp;
+                    <button type="reset" class="btn btn-outline-primary">Temizle</button>
+                    &nbsp;&nbsp;
+                    <a asp-action="Index">Film Listesi</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts
+{
+<partial name="_ValidationScriptsPartial" />
+
+<link href="/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" />
+<script src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+<script src="/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.tr.min.js"></script>
+
+<script>
+    $(function(){
+        $('#tarih').datepicker({
+            todayBtn: "linked",
+            clearBtn: true,
+            language: "tr",
+            orientation: "top auto",
+            autoclose: true,
+            todayHighlight: true
+        });
+    });
+</script>
+}
